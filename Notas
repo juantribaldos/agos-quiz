@@ -1,0 +1,186 @@
+
+
+estela@server:~$ cd mis_proy/quiz
+estela@server:~/mis_proy/quiz$ git log --oneline
+error: object file .git/objects/48/bb13e1c2db1c141308ab07d04f93d2f23cd877 is empty
+fatal: loose object 48bb13e1c2db1c141308ab07d04f93d2f23cd877 (stored in .git/objects/48/bb13e1c2db1c141308ab07d04f93d2f23cd877) is corrupt
+
+************
+Despues de ver el estado corrupto, inicio, add y hago un commit.
+
+
+estela@server:~/mis_proy/quiz$ git commit -m "Css a moviles"
+[master (root-commit) 6c55e96] Css a moviles
+ Committer: estela <estela@server.(none)>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 16 files changed, 256 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 app.js
+ create mode 100755 bin/www
+ create mode 100644 controllers/quiz_controller.js
+ create mode 100644 package.json
+ create mode 100755 public/favicon.ico
+ create mode 100644 public/stylesheets/smartphone.css
+ create mode 100644 public/stylesheets/style.css
+ create mode 100644 public/stylesheets/wide.css
+ create mode 100644 routes/Quitado_users.js
+ create mode 100644 routes/index.js
+ create mode 100644 views/error.ejs
+ create mode 100644 views/index.ejs
+ create mode 100644 views/layout.ejs
+ create mode 100644 views/quizes/answer.ejs
+ create mode 100644 views/quizes/question.ejs
+estela@server:~/mis_proy/quiz$ git log -onelline
+fatal: unrecognized argument: -onelline
+estela@server:~/mis_proy/quiz$ git log -oneline
+fatal: unrecognized argument: -oneline
+estela@server:~/mis_proy/quiz$ git log --oneline
+6c55e96 Css a moviles
+estela@server:~/mis_proy/quiz$ c
+********************************************************
+estela@server:~/mis_proy/quiz$ git branch
+* creditos
+  master
+estela@server:~/mis_proy/quiz$ git commit -m "Test_cred_01"
+# On branch creditos
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   Notas
+#	modified:   controllers/quiz_controller.js
+#	modified:   public/stylesheets/style.css
+#	modified:   routes/index.js
+#	modified:   views/index.ejs
+#	modified:   views/layout.ejs
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	public/IMG_1131.JPG
+#	public/stylesheets/IMG_1131.JPG
+#	views/Creditos/
+no changes added to commit (use "git add" and/or "git commit -a")
+estela@server:~/mis_proy/quiz$ git add
+Nothing specified, nothing added.
+Maybe you wanted to say 'git add .'?
+estela@server:~/mis_proy/quiz$ git add .
+estela@server:~/mis_proy/quiz$ git commit -m "Test_cred_02"
+[creditos 19b70f2] Test_cred_02
+ Committer: estela <estela@server.(none)>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 9 files changed, 43 insertions(+), 10 deletions(-)
+ create mode 100755 public/IMG_1131.JPG
+ create mode 100755 public/stylesheets/IMG_1131.JPG
+ create mode 100755 views/Creditos/autor.ejs
+estela@server:~/mis_proy/quiz$ git log --oneline
+19b70f2 Test_cred_02
+34de216 Css a moviles + notas
+6c55e96 Css a moviles
+estela@server:~/mis_proy/quiz$ git checkout master
+Switched to branch 'master'
+estela@server:~/mis_proy/quiz$ git branch
+  creditos
+* master
+estela@server:~/mis_proy/quiz$ git merge creditos
+Updating 34de216..19b70f2
+Fast-forward
+ Notas                           |   10 ++++++++++
+ controllers/quiz_controller.js  |    7 ++++++-
+ public/IMG_1131.JPG             |  Bin 0 -> 93474 bytes
+ public/stylesheets/IMG_1131.JPG |  Bin 0 -> 93474 bytes
+ public/stylesheets/style.css    |    1 +
+ routes/index.js                 |   13 +++++++------
+ views/Creditos/autor.ejs        |   15 +++++++++++++++
+ views/index.ejs                 |    2 +-
+ views/layout.ejs                |    5 +++--
+ 9 files changed, 43 insertions(+), 10 deletions(-)
+ create mode 100755 public/IMG_1131.JPG
+ create mode 100755 public/stylesheets/IMG_1131.JPG
+ create mode 100755 views/Creditos/autor.ejs
+estela@server:~/mis_proy/quiz$ git remote -v
+origin	https://github.com/juantribaldos/Proy_Quiz (fetch)
+origin	https://github.com/juantribaldos/Proy_Quiz (push)
+estela@server:~/mis_proy/quiz$ git push origin master
+Username for 'https://github.com': juantribaldos@gmail.com
+Password for 'https://juantribaldos@gmail.com@github.com': 
+To https://github.com/juantribaldos/Proy_Quiz
+   34de216..19b70f2  master -> master
+
+
+********************************************************
+
+estela@server:~/mis_proy/quiz$ git remote add origin https://github.com/juantribaldos/Proy_Quiz
+estela@server:~/mis_proy/quiz$ git push origin master
+Username for 'https://github.com': juantribaldos@gmail.com
+Password for 'https://juantribaldos@gmail.com@github.com': 
+To https://github.com/juantribaldos/Proy_Quiz
+ * [new branch]      master -> master
+estela@server:~/mis_proy/quiz$ 
+
+
+
+En la direccion http://railsapps.github.io/rails-heroku-tutorial.html
+
+veo que es mejor crear dominio con nombre para Heroku
+
+ "$ heroku create myapp"   y ya queda abierta 
+estela@server:~/mis_proy/quiz$ git remote -v
+heroku	https://git.heroku.com/proy-quiz.git (fetch)
+heroku	https://git.heroku.com/proy-quiz.git (push)
+origin	https://github.com/juantribaldos/Proy_Quiz (fetch)
+origin	https://github.com/juantribaldos/Proy_Quiz (push)
+estela@server:~/mis_proy/quiz$ 
+
+Las minusculas son muy importantes queda por renombrar en local
+Proy_Quiz a proy-quiz   Que es lo que me ha traido de cabeza. 
+*****************************************************
+Cambiamos el nombre del remoto para origin
+  git remote add new_origin [updated link]
+$ git remote add proy-quiz https://github.com/juantribaldos/proy-quiz
+$ git remote rm origin
+  git remote rename new_origin origin
+$ git remote rename proy-quiz origin
+
+*********	Se ha forzado  al dar un aviso de perdida de informacion.
+git push origin +master
+
+Nos movemos en https://dashboard.heroku.com/apps/proy-quiz/deploy/github
+
+Con las opciones:
+	Automatic deploys from master are enabled 
+	Creation of review apps is enabled Beta 
+	
+	Al ejecutar: Deploy a GitHub branch 
+	sale la opcion VIEW  para ver ejecutada la app.
+	
+	
+**** Versiones    "npm": "2.11.x"    "pg": "^4.4.0"  Que instala automaticamente
+** y que ponemos  "npm": "1.4.x"     "pg": "^4.1.1" 
+	
+	
+Otra posibilidad es definir las variables de .env en el .bashrc del usuario con export:
+
+export DATABASE_URL=sqlite://:@:/
+export DTABASE_STORAGE=quiz.sqlite
+
