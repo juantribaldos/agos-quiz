@@ -22,9 +22,9 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 console.log('dirname: ' + __dirname );
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded());
 app.use(cookieParser());
-app.use(methodOverride());
+app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
