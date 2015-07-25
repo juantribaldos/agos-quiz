@@ -28,7 +28,7 @@
 		omitNull:	true	 });	//solo Postgres				
 								
 	// Importar la definicion de la tabla Quiz en quiz.js
-	console.dir(process.env.DATABASE_URL + '   ' + Sequelize.DB_name );
+	console.log(process.env.DATABASE_URL + '   ' + Sequelize.DB_name );
 	var quiz_path = path.join(__dirname, 'quiz');
 	var Quiz = sequelize.import(quiz_path);
 	
@@ -45,5 +45,6 @@
 						respuesta: 'Lisboa'	  })
 		.then(function(){console.log('Base de datos inicializada')});
 						 };   });  });
+	// console.log("cuenta count:  "  + Quiz.count);
 										
 										
