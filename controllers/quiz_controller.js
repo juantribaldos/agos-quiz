@@ -2,23 +2,18 @@
 
   // Autoload - factoriza el codigo si ruta incluye :quizId  
   exports.load = function(req, res, next, quizId) {	
-    models.Quiz.find({
-            where: {
-                id: Number(quizId)
-            },
-            include: [{
-                model: models.Comment }]
-        }).then(
+    models.Quiz.find(quizId).then(
       function(quiz) { 
 	    if (quiz) { req.quiz = quiz; next(); } 
  		else { next( new Error('No existe quizId=' + quizId)) }
-					}              )
-		.catch(function(error){ next(error)});
+					}              
+			  ).catch(function(error){ next(error)});
+			  console.log("Estoy en LOAD");
 	};
 
     // GET /quizes
-  exports.index = function(req,res) {	
-	models.Quiz.findAll.then(function(quizes) { 
+  exports.index = function(req,res) {	console.log("Estoy en INDEX");
+	models.Quiz.findAll().then(function(quizes) { 
 	  res.render('quizes/index.ejs', { quizes: quizes, errores: [] 
 	  }); }).catch(function(error) { next(error)});	
   };
@@ -100,3 +95,17 @@ exports.index = function(req, res) {
       }     // Redirección HTTP a lista de preguntas (URL relativo)
     })
   };
+		// DELETE /quizes/:id
+  exports.destroy = function(req, res) {
+    req.quiz.destroy().then( function() {
+      res.redirect('/quizes');
+    }).catch(function(error){next(error)});
+  };
+
+//{
+//   where: {
+//                id: Number(quizId)
+//            },
+//            include: [{
+//                model: models.Comment }]
+//        }
