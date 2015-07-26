@@ -21,7 +21,7 @@
 	// GET /quizes/:id	
   exports.show = function(req,res) {	//console.log("Estoy en SHOW");
     //models.Quiz.find(req.params.quizId).then(function(quiz) { 
-      res.render('quizes/show', { quiz: req.quiz, errores: [] 
+      res.render('quizes/show', { quiz: req.quiz, errors: [] 
       });	
   };
 
@@ -31,15 +31,15 @@
 	if ( req.query.respuesta === req.quiz.respuesta )
 	  { resultado = 'Correcto'; }
 	res.render('quizes/answer',
-	  { quiz: req.quiz, respuesta: resultado, errores: [] 
+	  { quiz: req.quiz, respuesta: resultado, errors: [] 
 	  });
   };
   
 // GET /quizes/new
   exports.new = function(req, res) {	//console.log("Estoy en NEW");
 	var quiz = models.Quiz.build( // crea objeto quiz 
-	{ pregunta: "Pregunta", respuesta: "Respuesta" });
-  res.render('quizes/new', { quiz: quiz, errores: []});
+	{ pregunta: "Pregunta", respuesta: "Respuesta", tema: "tema" });
+  res.render('quizes/new', { quiz: quiz, errors: []});
   };
 		// POST /quizes/create
   exports.create = function(req, res){   //console.log("Estoy en CREATE");
@@ -49,7 +49,7 @@
     {
         var i=0; var errores=new Array();	//se convierte en [] con la propiedad message por compatibilida con layout
         for (var prop in errors) errores[i++]={message: errors[prop]};       
-        res.render('quizes/new', {quiz: quiz, errors: errores});
+        res.render('quizes/new', {quiz: quiz, errors: errors});
     } else {
         quiz // save: guarda en DB campos pregunta y respuesta de quiz
         .save({fields: ["pregunta", "respuesta", "tema"]})
@@ -68,14 +68,15 @@
   exports.update = function(req, res) {			//console.log("Estoy en UPDATE");
     req.quiz.pregunta  = req.body.quiz.pregunta;
 	req.quiz.respuesta = req.body.quiz.respuesta;
+	req.quiz.tema  = req.body.quiz.tema;
     // req.quiz 
-	var errors = req.quiz.validate();	//ya qe el objeto errors no tiene then(
+	var errors = req.quiz.validate();	//ya que el objeto errors no tiene then(
     
      if (errors)
     {
         var i=0; var errores=new Array();//se convierte en [] con la propiedad message por compatibilida con layout
         for (var prop in errors) errores[i++]={message: errors[prop]};       
-        res.render('quizes/new', {quiz: req.quiz, errors: errores});
+        res.render('quizes/new', {quiz: req.quiz, errors: errors});
     } else {
         req.quiz // save: guarda en DB campos pregunta y respuesta de quiz
         .save({fields: ["pregunta", "respuesta", "tema"]})
