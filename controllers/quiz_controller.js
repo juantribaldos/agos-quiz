@@ -11,14 +11,17 @@
 	};
 
     // GET /quizes
-  exports.index = function( req, res ) {		console.log( "Search: " + req.query.search );	  
-	var cadena = req.query.search
-	if (cadena)
-	  { models.Quiz.findAll({where: ["pregunta like ?", cadena]}).
+  exports.index = function( req, res ) {		console.log( "Search: " + req.query.search );	  	
+    var cadena = req.query.search;
+	if (cadena)		
+	  { 		
+	  var cadena = "%"+ cadena.replace(/\s+/g,'%' ) + "%" ;	  	
+	  console.log( "Search con %%: " + cadena );	  	
+	    models.Quiz.findAll({ where: ["pregunta like ?", cadena]}).
 	    then(function(quizes) { 
 	    res.render('quizes/index.ejs', { quizes: quizes, errors: [] 
 	    }); }).catch(function(error) { next(error)});
-	  } else {
+	  } else {	 
 	    models.Quiz.findAll().
 	    then(function(quizes) { 
 	    res.render('quizes/index.ejs', { quizes: quizes, errors: [] 
