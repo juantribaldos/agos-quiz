@@ -12,9 +12,18 @@
 
     // GET /quizes
   exports.index = function( req, res ) {		console.log( "Search: " + req.query.search );	  
-	  models.Quiz.findAll().then(function(quizes) { 
-	  res.render('quizes/index.ejs', { quizes: quizes, errors: [] 
-	  }); }).catch(function(error) { next(error)});	
+	var cadena = req.query.search
+	if (cadena)
+	  { models.Quiz.findAll({where: ["pregunta like ?", cadena]}).
+	    then(function(quizes) { 
+	    res.render('quizes/index.ejs', { quizes: quizes, errors: [] 
+	    }); }).catch(function(error) { next(error)});
+	  } else {
+	    models.Quiz.findAll().
+	    then(function(quizes) { 
+	    res.render('quizes/index.ejs', { quizes: quizes, errors: [] 
+	    }); }).catch(function(error) { next(error)});	
+			}
   };
 
 //    // GET /quizes
