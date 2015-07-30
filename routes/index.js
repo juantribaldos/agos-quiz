@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var quizController = require('../controllers/quiz_controller');
-
+var commentController = require('../controllers/comment_controller');
 
 	/* GET home page. */
   router.get('/', function(req, res) {
@@ -12,7 +12,7 @@ var quizController = require('../controllers/quiz_controller');
 	router.param('quizId', quizController.load ); 	
 
 	// Definicion de rutas de /quizes
-	//router.get('/quizes?search=', 				quizController.buscar);
+
 	router.get('/quizes',                      	quizController.index);
 	router.get('/quizes/:quizId(\\d+)',        	quizController.show);
 	router.get('/quizes/:quizId(\\d+)/answer', 	quizController.answer);
@@ -22,12 +22,13 @@ var quizController = require('../controllers/quiz_controller');
 	router.put('/quizes/:quizId(\\d+)', 		quizController.update);
 	router.delete('/quizes/:quizId(\\d+)', 		quizController.destroy);
 	
+	router.get('/quizes/:quizId(\\d+)/comments/new', commentController.new);
+	router.post('/quizes/:quizId(\\d+)/comments', commentController.create);
+	
 		
 	router.get('/author', function(req, res) {		
 	  res.render('autor', { Autor: 'Juan Carlos de la Iglesia Sanz' }); });
 	
-//	router.get('/quizes/question', quizController.question);
-//	router.get('/quizes/answer',   quizController.answer);	
 	
 	module.exports = router;
 	

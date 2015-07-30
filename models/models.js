@@ -31,8 +31,15 @@
 	console.log(process.env.DATABASE_URL + '   ' + Sequelize.DB_name );
 	var quiz_path = path.join(__dirname, 'quiz');
 	var Quiz = sequelize.import(quiz_path);
+	var comment_path = path.join(__dirname, 'comment');
+	var Comment = sequelize.import(comment_path);
+	
+	Comment.belongsTo(Quiz);  // exportar tabla Quiz
+	Quiz.hasMany(Comment);
 	
 	exports.Quiz = Quiz; // exportar definicion de tabla Quiz
+	exports.Comment = Comment;
+	
 	
 	//sequelize.sync() crea e inicializa tablas de preguntas en DB
   sequelize.sync().then(function() {
@@ -41,10 +48,10 @@
       if(count === 0){	// la tabla se inicializa solo si esta vacia
 	    Quiz.create({ pregunta: 'Capital de Italia',
 					  respuesta: 'Roma',
-					  tema: 'humanidades' });
+					  tema: 'Humanidades' });
 	    Quiz.create({ pregunta: 'Capital de Portugal',
 					  respuesta: 'Lisboa',
-					  tema: 'humanidades' })
+					  tema: 'Humanidades' })
 		.then(function(){console.log('Base de datos inicializada')});
 						 };   });  });
 	// console.log("cuenta count:  "  + Quiz.count);
