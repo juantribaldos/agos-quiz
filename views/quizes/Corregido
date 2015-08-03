@@ -1,0 +1,19 @@
+De Show.ejs  linea 12
+
+  <%for(index in quiz.comments){ %>
+  <p>- <%=quiz.comments[index].texto%></p>
+  <%}%>
+
+
+<%for(var i=0; i<quiz.comments.length; i++){%>
+<p>- <%=quiz.comments.texto%></p>
+<%}%>
+
+comment_controller
+{ comment: comment, quizid: req.params.quizId, errors: err.errors });
+
+
+
+sqlite (tampoco sé si puede hacer por consola...) pero me he descargado de github, sqlitebrowser y genial... Dejo el enlace:
+
+https://github.com/sqlitebrowser/sqlitebrowser/releases 

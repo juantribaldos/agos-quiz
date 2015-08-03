@@ -36,6 +36,7 @@
 	
 	Comment.belongsTo(Quiz);  // exportar tabla Quiz
 	Quiz.hasMany(Comment);
+	//Quiz.hasMany(Comment, {'constraints': true,'onUpdate': 'cascade','onDelete': 'cascade','hooks': true}); 
 	
 	exports.Quiz = Quiz; // exportar definicion de tabla Quiz
 	exports.Comment = Comment;

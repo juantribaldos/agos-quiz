@@ -5,11 +5,11 @@
 <label for="tema" class="rem">Tema:</label>
 
 <select autofocus name="quiz[tema]">
-  <option value="Humanidades">Humanidades</option>
-  <option value="Ocio">Ocio</option>
-  <option value="Ciencia">Ciencia</option>
-  <option value="Tecnologia">Tecnología</option>
-  <option value="Otro">Otro</option>
+  <option value="Humanidades" <%if (quiz.tema === "Humanidades"){%> selected <%}%>>Humanidades</option>
+  <option value="Ocio" <%if (quiz.tema === "Ocio"){%> selected <%}%>>Ocio</option>
+  <option value="Ciencia" <%if (quiz.tema === "Ciencia"){%> selected <%}%>>Ciencia</option>
+  <option value="Tecnologia" <%if (quiz.tema === "Tecnologia"){%> selected <%}%>>Tecnologia</option>
+  <option value="Otro" <%if (quiz.tema === "Otro"){%> selected <%}%>>Otro</option>
 </select>
 
 <a href="/quizes"><button type="button">Cancelar</button></a>

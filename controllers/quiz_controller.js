@@ -20,7 +20,7 @@
 	  { 		
 	  var cadena = "%"+ cadena.replace(/\s+/g,'%' ) + "%" ;	  	
 	  console.log( "Search con %%: " + cadena );	  	
-	    models.Quiz.findAll({ where: ["pregunta like ?", cadena]}).
+	    models.Quiz.findAll({ where:["upper(pregunta) like ?", cadena.toUpperCase()], order: 'pregunta ASC'}).
 	    then(function(quizes) { 
 	    res.render('quizes/index.ejs', { quizes: quizes, errors: [] 
 	    }); }).catch(function(error) { next(error)});
