@@ -14,12 +14,12 @@
 	};
 
     // GET /quizes
-  exports.index = function( req, res ) {		console.log( "Search: " + req.query.search );	  	
+  exports.index = function( req, res ) {		//  console.log( "Search: " + req.query.search );	  	
     var cadena = req.query.search;
 	if (cadena)		
 	  { 		
 	  var cadena = "%"+ cadena.replace(/\s+/g,'%' ) + "%" ;	  	
-	  console.log( "Search con %%: " + cadena );	  	
+												//  console.log( "Search con %%: " + cadena );	  	
 	    models.Quiz.findAll({ where:["upper(pregunta) like ?", cadena.toUpperCase()], order: 'pregunta ASC'}).
 	    then(function(quizes) { 
 	    res.render('quizes/index.ejs', { quizes: quizes, errors: [] 

@@ -29,18 +29,47 @@ app.use(session());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function(req, res, next){
+
+app.use(function(req, res, next) { 
+    if(req.session.user){						// si estamos en una sesion
+        if(!req.session.marcatiempo){			//primera vez se pone la marca de tiempo
+            req.session.marcatiempo=(new Date()).getTime();
+            console.log( "Marca tiempo: " + req.session.marcatiempo );
+            
+        }else{
+			var entreTiempo = (new Date()).getTime()-req.session.marcatiempo;
+
+            if(entreTiempo > 20000){//se pasó el tiempo y eliminamos la sesión (2min=120000ms)
+                console.log("SE ELIMINARA LA SESION UUUUUUUUUUUUUUUUU");
+						//delete req.session.user;     //eliminamos la sesion del usuario
+				req.session.user.pasaNopasa = "pasa";
+						req.session.marcatiempo = null;
+				console.log('Voy a VoyVoy a redirect LOGouT');
+				res.redirect("/logout");
+			}else{		//hay actividad se pone nueva marca de tiempo
+				req.session.user.loqueQueda = 20000 - entreTiempo;
+                req.session.marcatiempo=(new Date()).getTime();                
+				}
+			}
+    }
+next();
+});
+
+
+app.use(function(req, res, next){			
 			// guardar path en session.redir para despues de login
 	if (!req.path.match(/\/login|\/logout/)) {
 		req.session.redir = req.path;
 		}	
 			// Hacer visible req.session en las vistas
-	res.locals.session = req.session;
+	res.locals.session = req.session;	
+
 	next();	
  });
 
-app.use('/', routes);
-// Quitado app.use('/users', users);
+app.use('/', routes);     
+
+				// Quitado app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

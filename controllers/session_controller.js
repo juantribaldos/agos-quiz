@@ -21,6 +21,7 @@
     var password  = req.body.password;
 
     var userController = require('./user_controller');
+    
     userController.autenticar(login, password, function(error, user) {
 
         if (error) {  // si hay error retornamos mensajes de error de sesión
@@ -29,16 +30,21 @@
             return;
         }
 
-        // Crear req.session.user y guardar campos   id  y  username
-        // La sesión se define por la existencia de:    req.session.user
-        req.session.user = {id:user.id, username:user.username, isAdmin:user.isAdmin};
+				// Crear req.session.user y guardar campos   id  y  username
+				// La sesión se define por la existencia de:    req.session.user
+        req.session.user = {id:user.id, username:user.username, loqueQueda: 20000, pasaNopasa: "nopasa" };
+        res.redirect(req.session.redir );
+        //.toString());// redirección a path anterior a login
 
-        res.redirect(req.session.redir.toString());// redirección a path anterior a login
     });
   };
 
 		// DELETE /logout   -- Destruir sesion 
-  exports.destroy = function(req, res) {
+  exports.destroy = function(req, res) {    console.log( "DESTROYSSessionREQ: " + req.session.redir);
     delete req.session.user;
-    res.redirect(req.session.redir.toString()); // redirect a path anterior a login
+    req.session.marcatiempo = null;
+    res.redirect(req.session.redir ); // .toString() redirect a path anterior a login
   };
+		// Paso de variables 
+  exports.paso = function(req, res) {    
+	  console.log( "ESTOY EN PASOPASOPASOPASO " + session.user.username);  };

@@ -9,21 +9,82 @@
 	<link rel='stylesheet'  type='text/css'
 		  media='only screen and (max-width:480px)'	
 		  href='/stylesheets/smartphone.css'/>
+<script>
+
+function startTime(tmp) {	// no puede ser otro nombre
+	var count=( count || 0 );
+	count = count + 1 ;
+    var today=new Date();
+    var h=today.getHours();
+    var m=today.getMinutes();
+    var s=today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('demo').innerHTML = h+":"+m+":"+s +  "    " + tmp  ;  
+    var t = setTimeout(function(){ startTime(tmp) }, tmp);      
+}
+function tiempo(tmp) {	// no puede ser otro nombre
+	var count=( count || 0 );
+	count = count + 1 ;
+    var today=new Date();
+    var h=today.getHours();
+    var m=today.getMinutes();
+    var s=today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    
+    document.getElementById('demo').innerHTML = h+":"+m+":"+s +  "    " + tmp  ;  
+}
+
+function leelqQueda() { if(nopasa){ }}
+
+function actTiempo(tmp) { var t = setTimeout(function(){ tiempo(tmp) }, tmp); }
+
+function checkTime(i) {
+    if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
+}
+
+</script>
+
+		  
 </head>
 
-<body>
-<div id="page-wrap">
+<body onload="startTime(tmp='4000')" >   <!--  onload solo se puede cargar en body, header. no en hn, pn ...	-->  
+<!-- <form>
+  <input type="button" value="Try it"  onclick="timedText()" >
+  <input type="text" id="txt" >
+</form>--> 
+<div id="page-wrap">	
 	<header class="main" id="h1">
+			    
 		<%if(!session.user){%>
 		<span class="right"><a href="/login">Login</a></span>
 		<%}else{%>
-		<span class="right"><%=session.user.username%><a href="/logout">Logout</a></span>
-		<%}%>
-
-		<h3>Quiz<span>: el juego de las preguntas</span></h3>
+<p>gege<var id="vSes" ><%= session.user.loqueQueda%></var>gege</p>
+<script>
+	document.write( document.getElementById("vSes").innerHTML)
+</script>
+		<span class="left"><a id="demo" >  </a></span><span><a id="h_00"></a></span>
+		<span><a href="/logout" ></a></span>
+		<var id="mVar" > <%= session.user.pasaNopasa%></var>
+		<span><a><%=session.user.username%></a></span>
+		<span><a href="/logout">Logout</a></span>
+		<var id="sTmp" > <%= session.user.loqueQueda%></var><%}%>
+		<script type="text/javascript">  
+			//function leeVen() { console.log("session.user.lastRequestTime"); }
+		    //if (Pasa === "pasa")
+		    //leeVen();
+		    
+		    console.log("session.user.lastRequestTime");
+		</script>   		
+	
+	<h3>Quiz<span>: el juego de las preguntas</span></h3>
 		<!--	<h3>Bienvenido</h3>  	No deja incluir variable: esta renderizado en section --> 
 	</header>	
-	<nav class="main" id="n1" role="navigation">
+	<nav class="main" id="n1" role="navigation" >
 		<span><a href="/">Inicio</a></span>
 		<span><a href="/quizes">Preguntas</a></span>
 	</nav>
@@ -32,13 +93,14 @@
 	<div><%- body %></div>
 	</section>					
 		
-	<footer class="main" id="f1">
+	<footer class="main" id="f1" >	
+		
 		<span><a href="http://es.wikipedia.org/wiki/Quiz">¿Qué es un Quiz?</a></span>
 		<span><a href="https://github.com/juantribaldos/Proy_Quiz">Mirar en Github</a></span>
 			<!--	<span><a href="http://localhost:3000/author">Creditos</a></span>	--> 		
-		<span><a href="/author">Creditos</a></span>				
+		<span><a href="/author">Creditos</a></span>
+		<!-- <span><a id="hora"> <a/></span> -->
 	</footer>
-
 </div> 
 </body>
 </html>
