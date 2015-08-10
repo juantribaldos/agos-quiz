@@ -43,6 +43,7 @@
   exports.destroy = function(req, res) {    console.log( "DESTROYSSessionREQ: " + req.session.redir);
     delete req.session.user;
     req.session.marcatiempo = null;
+    
     res.redirect(req.session.redir ); // .toString() redirect a path anterior a login
   };
 		// Paso de variables 
