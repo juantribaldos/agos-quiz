@@ -6,7 +6,7 @@ var sessionController = require('../controllers/session_controller');
 
 	/* GET home page. */
   router.get('/', function(req, res) {
-	res.render('index', { title: 'Quiz_JC', errors: []});
+	res.render('index', { title: 'Quiz_JC', errors: []} ); 
   });
   
   // Autoload de comandos con :quizId
