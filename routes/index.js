@@ -34,7 +34,10 @@ var sessionController = require('../controllers/session_controller');
   router.get('/quizes/:quizId(\\d+)/comments/new', commentController.new);
   router.post('/quizes/:quizId(\\d+)/comments', commentController.create);
   router.get('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish', 
-			      sessionController.loginRequired, commentController.publish);	
+			      sessionController.loginRequired, commentController.publish);
+
+			// Definición de ruta para las estadísticas
+//	router.get('/quizes/statistics', statisticsController.calculate, statisticsController.show);			      	
 		
 	router.get('/author', function(req, res) {	console.log("ESTOY EN AUTOR");	
 	  res.render('autor', { Autor: 'Juan Carlos de la Iglesia Sanz' });	});

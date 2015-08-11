@@ -39,7 +39,7 @@ app.use(function(req, res, next) {
         }else{
 			var entreTiempo = (new Date()).getTime()-req.session.marcatiempo;
 
-            if(entreTiempo > 20000){//se pasó el tiempo y eliminamos la sesión (2min=120000ms)
+            if(entreTiempo > 120000){//se pasó el tiempo y eliminamos la sesión (2min=120000ms)
                 console.log("SE ELIMINARA LA SESION UUUUUUUUUUUUUUUUU");
 						//delete req.session.user;     //eliminamos la sesion del usuario
 				req.session.user.pasaNopasa = "pasa";
@@ -47,7 +47,7 @@ app.use(function(req, res, next) {
 				console.log('Voy a VoyVoy a redirect LOGouT');
 				res.redirect("/logout");
 			}else{		//hay actividad se pone nueva marca de tiempo
-				req.session.user.loqueQueda = 20000 - entreTiempo;
+				req.session.user.loqueQueda = 120000 - entreTiempo;
                 req.session.marcatiempo=(new Date()).getTime();                
 				}
 			}

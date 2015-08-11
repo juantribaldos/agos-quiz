@@ -32,7 +32,7 @@
 
 				// Crear req.session.user y guardar campos   id  y  username
 				// La sesión se define por la existencia de:    req.session.user
-        req.session.user = {id:user.id, username:user.username, loqueQueda: 20000, pasaNopasa: "nopasa" };
+        req.session.user = {id:user.id, username:user.username, loqueQueda: 120000, pasaNopasa: "nopasa" };
         res.redirect(req.session.redir );
         //.toString());// redirección a path anterior a login
 

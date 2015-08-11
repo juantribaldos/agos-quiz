@@ -12,7 +12,6 @@
 <script type="text/javascript" src="zepto.min.js"></script>
 <script>
 
-
 function startTime() {	// no puede ser otro nombre
   var today=new Date();   
   var tmp=4000;
@@ -27,9 +26,7 @@ function startTime() {	// no puede ser otro nombre
 	  $("#demo").html(today.toLocaleTimeString()); 
 	  var t = setTimeout(function(tmp){ startTime() }, tmp);	  
 		  }			
-		  } 			 
-	  
-	
+		  } 			   
 function rearranque() { location.reload();	}									  
 </script>
 
@@ -59,6 +56,7 @@ function rearranque() { location.reload();	}
 	<nav class="main" id="n1" role="navigation" >
 		<span><a href="/">Inicio</a></span>
 		<span><a href="/quizes">Preguntas</a></span>
+		<span><a href="/quizes/statistics">Estadísticas</a></span>
 	</nav>
 	
 	<section class="main" id="s1">	
