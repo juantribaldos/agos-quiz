@@ -30,7 +30,7 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use(function(req, res, next) { 
+app.use(function(req, res, next) { console.log('Estoy en app');
     if(req.session.user){						// si estamos en una sesion
         if(!req.session.marcatiempo){			//primera vez se pone la marca de tiempo
             req.session.marcatiempo=(new Date()).getTime();
