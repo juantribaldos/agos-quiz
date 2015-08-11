@@ -37,8 +37,7 @@ app.use(function(req, res, next) { console.log('Estoy en app');
             console.log( "Marca tiempo: " + req.session.marcatiempo );
             
         }else{
-			var entreTiempo = (new Date()).getTime()-req.session.marcatiempo;
-			res.locals.entretiempo = entretiempo;
+			var entreTiempo = (new Date()).getTime()-req.session.marcatiempo;		
 
             if(entreTiempo > 20000){//se pasó el tiempo y eliminamos la sesión (2min=120000ms)
                 console.log("SE ELIMINARA LA SESION UUUUUUUUUUUUUUUUU");
